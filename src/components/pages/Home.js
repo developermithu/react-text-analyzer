@@ -7,10 +7,20 @@ export default function Home() {
     setText(event.target.value);
   }
 
+  function handleUppercase() {
+    let newText = text.toUpperCase();
+    setText(newText);
+  }
+
+  function handleLowercase() {
+    let newText = text.toLowerCase();
+    setText(newText);
+  }
+
   function handleTitleCase() {
     //split the above string into an array of strings
     //whenever a blank space is encountered
-    const array = text.split(" ");
+    const array = text.toLowerCase().split(" ");
 
     //loop through each element of the array and capitalize the first letter.
     for (let i = 0; i < array.length; i++) {
@@ -23,13 +33,8 @@ export default function Home() {
     setText(newText);
   }
 
-  function handleUppercase() {
-    let newText = text.toUpperCase();
-    setText(newText);
-  }
-
-  function handleLowercase() {
-    let newText = text.toLowerCase();
+  function handleReverse() {
+    let newText = text.split("").reverse().join("");
     setText(newText);
   }
 
@@ -37,9 +42,49 @@ export default function Home() {
     setText("");
   }
 
+  // slow reading speed 125wpm
+  // avg reading speed 300wpm
+  // fast reading speed 450wpm
+  //Math.round(), Returns rounded to its nearest integer
+
+  function slowReadTime() {
+    const countWords = text.split(" ").length;
+    const countMinutes = countWords / 125;
+    if (countMinutes < 1) {
+      return Math.round(countMinutes * 60) + " sec";
+    } else {
+      return Math.round(countMinutes) + " min";
+    }
+  }
+
+  function avgReadTime() {
+    const countWords = text.split(" ").length;
+    const countMinutes = countWords / 300;
+    if (countMinutes < 1) {
+      return Math.round(countMinutes * 60) + " sec";
+    } else {
+      return Math.round(countMinutes) + " min";
+    }
+  }
+
+  function fastReadTime() {
+    const countWords = text.split(" ").length;
+    const countMinutes = countWords / 450;
+    if (countMinutes < 1) {
+      return Math.round(countMinutes * 60) + " sec";
+    } else {
+      return Math.round(countMinutes) + " min";
+    }
+  }
 
   return (
     <div className="py-20">
+      <div className="py-2 flex items-center gap-x-3">
+        <div className="text-xl">Reading Time:</div>
+        <div> {slowReadTime()} <span className="text-xs">(slow)</span>, </div>
+        <div> {avgReadTime()} <span className="text-xs">(avg)</span>, </div>
+        <div> {fastReadTime()} <span className="text-xs">(fast)</span> </div>
+      </div>
       <form>
         <div class="mb-4 w-full bg-gray-50 rounded-lg border border-gray-200">
           <div class="py-2 px-4 bg-white rounded-t-lg">
@@ -50,7 +95,7 @@ export default function Home() {
               value={text}
               onChange={handleOnChange}
               id="comment"
-              rows="4"
+              rows="10"
               class="px-0 w-full text-sm text-gray-700 bg-white focus:ring-0 border-none"
               placeholder="Write your content..."
               required=""
@@ -80,11 +125,11 @@ export default function Home() {
                 lowercase
               </button>
               <button
-                onClick={clearFormData}
+                onClick={handleReverse}
                 type="button"
                 class="py-2 px-4 text-sm font-medium text-blue-500 bg-transparent rounded-r-md border border-blue-500 hover:bg-blue-500 hover:text-white focus:z-10 focus:bg-blue-500 focus:text-white"
               >
-                Clear
+                Reverse
               </button>
             </div>
 
@@ -128,6 +173,7 @@ export default function Home() {
                 </svg>
               </button>
               <button
+                title="Copy to Clipboard"
                 type="button"
                 class="inline-flex justify-center p-2 text-gray-500 rounded cursor-pointer hover:text-blue-500 hover:bg-gray-100"
               >
@@ -152,7 +198,7 @@ export default function Home() {
       </form>
       <p class="ml-auto text-gray-500 space-x-3">
         <span className="font-bold">{text.split(" ").length}</span> words,
-         <span className="font-bold">{text.length}</span> Charecters
+        <span className="font-bold">{text.length}</span> Charecters
       </p>
     </div>
   );
