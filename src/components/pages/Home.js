@@ -60,7 +60,8 @@ export default function Home(props) {
 
     /* Copy the text inside the text field */
     navigator.clipboard.writeText(content.value);
-    // alert("Copied the text");
+    // document.getSelection().removeAllRanges(); // deselect text
+
     props.showAlert("Copied to clipboard.", "Success!");
   };
 
@@ -107,7 +108,7 @@ export default function Home(props) {
   }
 
   return (
-    <div className="pt-8 pb-10">
+    <div className="pt-8 pb-10 container">
       <div className="py-2 flex items-center gap-x-4 text-gray-500">
         <div className="text-xl font-semibold ">Reading Time :</div>
         {text.length < 1 ? (
@@ -136,12 +137,13 @@ export default function Home(props) {
               rows="11"
               className="px-0 w-full text-gray-500 bg-white focus:ring-0 border-none"
               placeholder="Write your content..."
-              autoFocus="true"
+              autoFocus={true}
             ></textarea>
           </div>
           <div className="flex justify-between items-center py-2 px-3 border-t">
             <div className="inline-flex rounded-md shadow-sm" role="group">
               <button
+                disabled={text.length === 0}
                 onClick={handleTitleCase}
                 type="button"
                 className="py-2 px-4 text-sm font-medium text-blue-500 bg-transparent rounded-l-lg border border-blue-500 hover:bg-blue-500 hover:text-white focus:z-10 focus:bg-blue-500 focus:text-white"
@@ -149,6 +151,7 @@ export default function Home(props) {
                 Title Case
               </button>
               <button
+                disabled={text.length === 0}
                 onClick={handleUppercase}
                 type="button"
                 className="py-2 px-4 text-sm font-medium text-blue-500 bg-transparent border-t border-b border-blue-500 hover:bg-blue-500 hover:text-white focus:z-10 focus:bg-blue-500 focus:text-white"
@@ -156,6 +159,7 @@ export default function Home(props) {
                 UPPERCASE
               </button>
               <button
+                disabled={text.length === 0}
                 onClick={handleLowercase}
                 type="button"
                 className="py-2 px-4 text-sm font-medium text-blue-500 bg-transparent border-t border-b border-l border-blue-500 hover:bg-blue-500 hover:text-white focus:z-10 focus:bg-blue-500 focus:text-white"
@@ -163,6 +167,7 @@ export default function Home(props) {
                 lowercase
               </button>
               <button
+                disabled={text.length === 0}
                 onClick={RemoveExtraSpace}
                 type="button"
                 className="py-2 px-4 text-sm font-medium text-blue-500 bg-transparent border-t border-b border-l border-blue-500 hover:bg-blue-500 hover:text-white focus:z-10 focus:bg-blue-500 focus:text-white"
@@ -170,6 +175,7 @@ export default function Home(props) {
                 RemoveExtraSpace
               </button>
               <button
+                disabled={text.length === 0}
                 onClick={handleReverse}
                 type="button"
                 className="py-2 px-4 text-sm font-medium text-blue-500 bg-transparent rounded-r-md border border-blue-500 hover:bg-blue-500 hover:text-white focus:z-10 focus:bg-blue-500 focus:text-white"
@@ -180,6 +186,7 @@ export default function Home(props) {
 
             <div className="flex items-center gap-x-3 pl-0 sm:pl-2">
               <button
+                disabled={text.length === 0}
                 onClick={clearFormData}
                 title="Refresh"
                 type="button"
@@ -191,16 +198,17 @@ export default function Home(props) {
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
-                  stroke-width="2"
+                  strokeWidth="2"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
                   />
                 </svg>
               </button>
               <button
+                disabled={text.length === 0}
                 onClick={handleCopyToClipboard}
                 title="Copy to Clipboard"
                 type="button"
@@ -212,11 +220,11 @@ export default function Home(props) {
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
-                  stroke-width="2"
+                  strokeWidth="2"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"
                   />
                 </svg>
@@ -226,7 +234,14 @@ export default function Home(props) {
         </div>
       </form>
       <p className="ml-auto text-gray-500 space-x-3">
-        <span className="font-bold">{text.split(" ").length}</span> words,
+        <span className="font-bold">
+          {
+            text.split(" ").filter((element) => {
+              return element.length !== 0;
+            }).length
+          }
+        </span>{" "}
+        words,
         <span className="font-bold">{text.length}</span> Charecters
       </p>
     </div>

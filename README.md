@@ -17,3 +17,11 @@ npm run start
 1. Word counter
 1. Reverse the text
 1. Remove extra whitespace
+
+### Have to Do 
+- Enable switch mode
+- Convert progressive web app
+- Responsive design
+- React router
+- Add favicon
+- SEO optimized
