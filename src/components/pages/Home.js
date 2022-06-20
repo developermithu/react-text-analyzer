@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function Home() {
+export default function Home(props) {
   const [text, setText] = useState("");
 
   function handleOnChange(event) {
@@ -8,13 +8,17 @@ export default function Home() {
   }
 
   function handleUppercase() {
-    let newText = text.toUpperCase();
+    let purifyText = text.split(/[ ]+/).join(" "); //remove extra whitespace
+    let newText = purifyText.toUpperCase();
     setText(newText);
+    props.showAlert("Converted to uppercase.", "Success!");
   }
 
   function handleLowercase() {
-    let newText = text.toLowerCase();
+    let purifyText = text.split(/[ ]+/).join(" "); //remove extra whitespace
+    let newText = purifyText.toLowerCase();
     setText(newText);
+    props.showAlert("Converted to lowercase.", "Success!");
   }
 
   function handleTitleCase() {
@@ -30,17 +34,42 @@ export default function Home() {
     //Join all the elements of the array back into a string
     //using a blankspace as a separator
     let newText = array.join(" ");
-    setText(newText);
+    let purifyText = newText.split(/[ ]+/).join(" "); //remove extra whitespace
+    setText(purifyText);
+    props.showAlert("Converted to title case.", "Success!");
   }
 
   function handleReverse() {
     let newText = text.split("").reverse().join("");
     setText(newText);
+    props.showAlert("Reversed successfully.", "Success!");
   }
 
   function clearFormData() {
     setText("");
+    props.showAlert("Data cleared successfully.", "Success!");
   }
+
+  const handleCopyToClipboard = () => {
+    /* Get the text field */
+    const content = document.getElementById("content");
+
+    /* Select the text field */
+    content.select();
+    content.setSelectionRange(0, 99999); /* For mobile devices */
+
+    /* Copy the text inside the text field */
+    navigator.clipboard.writeText(content.value);
+    // alert("Copied the text");
+    props.showAlert("Copied to clipboard.", "Success!");
+  };
+
+  const RemoveExtraSpace = () => {
+    let purifyTextArr = text.split(/[ ]+/); //remove extra whitspace
+    let newText = purifyTextArr.join(" ");
+    setText(newText);
+    props.showAlert("Extra space removed.", "Success!");
+  };
 
   // slow reading speed 125wpm
   // avg reading speed 300wpm
@@ -78,71 +107,87 @@ export default function Home() {
   }
 
   return (
-    <div className="py-20">
-      <div className="py-2 flex items-center gap-x-3">
-        <div className="text-xl">Reading Time:</div>
-        <div> {slowReadTime()} <span className="text-xs">(slow)</span>, </div>
-        <div> {avgReadTime()} <span className="text-xs">(avg)</span>, </div>
-        <div> {fastReadTime()} <span className="text-xs">(fast)</span> </div>
+    <div className="pt-8 pb-10">
+      <div className="py-2 flex items-center gap-x-4 text-gray-500">
+        <div className="text-xl font-semibold ">Reading Time :</div>
+        {text.length < 1 ? (
+          ""
+        ) : (
+          <>
+            <div>
+              {slowReadTime()} <span className="text-xs">(slow)</span>,
+            </div>
+            <div>
+              {avgReadTime()} <span className="text-xs">(avg)</span>,
+            </div>
+            <div>
+              {fastReadTime()} <span className="text-xs">(fast)</span>
+            </div>
+          </>
+        )}
       </div>
       <form>
-        <div class="mb-4 w-full bg-gray-50 rounded-lg border border-gray-200">
-          <div class="py-2 px-4 bg-white rounded-t-lg">
-            <label for="comment" class="sr-only">
-              Your comment
-            </label>
+        <div className="mb-4 w-full bg-gray-50 rounded-lg border border-gray-200">
+          <div className="py-3 px-5 bg-white rounded-t-lg">
             <textarea
               value={text}
               onChange={handleOnChange}
-              id="comment"
-              rows="10"
-              class="px-0 w-full text-sm text-gray-700 bg-white focus:ring-0 border-none"
+              id="content"
+              rows="11"
+              className="px-0 w-full text-gray-500 bg-white focus:ring-0 border-none"
               placeholder="Write your content..."
-              required=""
+              autoFocus="true"
             ></textarea>
           </div>
-          <div class="flex justify-between items-center py-2 px-3 border-t">
-            <div class="inline-flex rounded-md shadow-sm" role="group">
+          <div className="flex justify-between items-center py-2 px-3 border-t">
+            <div className="inline-flex rounded-md shadow-sm" role="group">
               <button
                 onClick={handleTitleCase}
                 type="button"
-                class="py-2 px-4 text-sm font-medium text-blue-500 bg-transparent rounded-l-lg border border-blue-500 hover:bg-blue-500 hover:text-white focus:z-10 focus:bg-blue-500 focus:text-white"
+                className="py-2 px-4 text-sm font-medium text-blue-500 bg-transparent rounded-l-lg border border-blue-500 hover:bg-blue-500 hover:text-white focus:z-10 focus:bg-blue-500 focus:text-white"
               >
                 Title Case
               </button>
               <button
                 onClick={handleUppercase}
                 type="button"
-                class="py-2 px-4 text-sm font-medium text-blue-500 bg-transparent border-t border-b border-blue-500 hover:bg-blue-500 hover:text-white focus:z-10 focus:bg-blue-500 focus:text-white"
+                className="py-2 px-4 text-sm font-medium text-blue-500 bg-transparent border-t border-b border-blue-500 hover:bg-blue-500 hover:text-white focus:z-10 focus:bg-blue-500 focus:text-white"
               >
                 UPPERCASE
               </button>
               <button
                 onClick={handleLowercase}
                 type="button"
-                class="py-2 px-4 text-sm font-medium text-blue-500 bg-transparent border-t border-b border-l border-blue-500 hover:bg-blue-500 hover:text-white focus:z-10 focus:bg-blue-500 focus:text-white"
+                className="py-2 px-4 text-sm font-medium text-blue-500 bg-transparent border-t border-b border-l border-blue-500 hover:bg-blue-500 hover:text-white focus:z-10 focus:bg-blue-500 focus:text-white"
               >
                 lowercase
               </button>
               <button
+                onClick={RemoveExtraSpace}
+                type="button"
+                className="py-2 px-4 text-sm font-medium text-blue-500 bg-transparent border-t border-b border-l border-blue-500 hover:bg-blue-500 hover:text-white focus:z-10 focus:bg-blue-500 focus:text-white"
+              >
+                RemoveExtraSpace
+              </button>
+              <button
                 onClick={handleReverse}
                 type="button"
-                class="py-2 px-4 text-sm font-medium text-blue-500 bg-transparent rounded-r-md border border-blue-500 hover:bg-blue-500 hover:text-white focus:z-10 focus:bg-blue-500 focus:text-white"
+                className="py-2 px-4 text-sm font-medium text-blue-500 bg-transparent rounded-r-md border border-blue-500 hover:bg-blue-500 hover:text-white focus:z-10 focus:bg-blue-500 focus:text-white"
               >
                 Reverse
               </button>
             </div>
 
-            <div class="flex pl-0 space-x-1 sm:pl-2">
+            <div className="flex items-center gap-x-3 pl-0 sm:pl-2">
               <button
                 onClick={clearFormData}
                 title="Refresh"
                 type="button"
-                class="inline-flex justify-center p-2 text-gray-500 rounded cursor-pointer hover:text-blue-500 hover:bg-gray-100"
+                className="inline-flex justify-center p-2 text-gray-500 rounded cursor-pointer hover:text-blue-500 hover:bg-gray-200"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="h-6 w-6"
+                  className="h-6 w-6"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -156,30 +201,14 @@ export default function Home() {
                 </svg>
               </button>
               <button
-                type="button"
-                class="inline-flex justify-center p-2 text-gray-500 rounded cursor-pointer hover:text-blue-500 hover:bg-gray-100"
-              >
-                <svg
-                  class="w-6 h-6"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-              </button>
-              <button
+                onClick={handleCopyToClipboard}
                 title="Copy to Clipboard"
                 type="button"
-                class="inline-flex justify-center p-2 text-gray-500 rounded cursor-pointer hover:text-blue-500 hover:bg-gray-100"
+                className="inline-flex justify-center p-2 text-gray-500 rounded cursor-pointer hover:text-blue-500 hover:bg-gray-200"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="h-6 w-6"
+                  className="h-6 w-6"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -196,7 +225,7 @@ export default function Home() {
           </div>
         </div>
       </form>
-      <p class="ml-auto text-gray-500 space-x-3">
+      <p className="ml-auto text-gray-500 space-x-3">
         <span className="font-bold">{text.split(" ").length}</span> words,
         <span className="font-bold">{text.length}</span> Charecters
       </p>
