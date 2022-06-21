@@ -1,10 +1,28 @@
-import React from 'react'
+import React from "react";
+import ProjectFeatureCheckList from "../ProjectFeatureCheckList";
 
 export default function about() {
+  document.title = "Text Analyzer - About"
+
   return (
-    <div className='container py-16'>
-      <h1>About me</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore eveniet nulla facere vitae blanditiis recusandae sed autem praesentium deleniti reprehenderit, nemo accusamus quos. Amet facilis ipsum aut voluptatum dignissimos mollitia eum laudantium ea quis, illo earum et numquam inventore placeat, tempora deserunt. Eius alias similique, quaerat accusantium quidem eos dolores?</p>
-    </div>
-  )
+    <section className="text-gray-600 container py-10 md:py-14">
+      <div className="text-center pb-5">
+        <h1 className="sm:text-4xl text-2xl font-medium text-center title-font text-blue-500 md:mb-4">
+          About Project
+        </h1>
+      </div>
+      <div className="flex flex-wrap lg:w-4/5 text-sm md:text-base sm:mx-auto sm:mb-2 -mx-2">
+
+      <ProjectFeatureCheckList text="Convert text to title case"/>
+      <ProjectFeatureCheckList text="Convert lowercase to uppercase"/>
+      <ProjectFeatureCheckList text="Convert uppercase to lowercase"/>
+      <ProjectFeatureCheckList text="Remove extra whitespace"/>
+      <ProjectFeatureCheckList text="Reverse the text"/>
+      <ProjectFeatureCheckList text="Copy to clipboard"/>
+      <ProjectFeatureCheckList text="Count words and charecters"/>
+      <ProjectFeatureCheckList text="Count reading time"/>
+
+      </div>
+    </section>
+  );
 }

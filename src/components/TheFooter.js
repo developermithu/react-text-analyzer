@@ -3,7 +3,7 @@ import React from "react";
 export default function TheFooter() {
   return (
     <footer className="container border-t py-5">
-      <div className="flex items-center justify-between text-gray-500">
+      <div className="flex items-center justify-between text-gray-500 text-xs md:text-base">
         <div>
           &copy; Copyright 2022 -
           <a className=" hover:underline hover:text-blue-500 pl-1" href="http://mithu.epizy.com" target="_blank" rel="noreferrer">
@@ -13,7 +13,7 @@ export default function TheFooter() {
         <div className="flex items-center gap-x-7">
           <a href="https://instagram.com/developermithu" target="_blank" rel="noreferrer">
             <svg
-              className="w-5 h-5 fill-gray-600 hover:scale-150 hover:fill-blue-500 transition-all duration-300 cursor-pointer"
+              className="w-4 h-4 md:w-6 md:h-6 fill-gray-600 hover:scale-150 hover:fill-blue-500 transition-all duration-300 cursor-pointer"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 448 512"
             >
@@ -22,7 +22,7 @@ export default function TheFooter() {
           </a>
           <a href="https://linkedin.com/in/developermithu" target="_blank" rel="noreferrer">
             <svg
-              className="w-5 h-5 fill-gray-600 hover:scale-150 hover:fill-blue-500 transition-all duration-300 cursor-pointer"
+              className="w-4 h-4 md:w-6 md:h-6 fill-gray-600 hover:scale-150 hover:fill-blue-500 transition-all duration-300 cursor-pointer"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 448 512"
             >
@@ -31,7 +31,7 @@ export default function TheFooter() {
           </a>
           <a href="https://github.com/developermithu" target="_blank" rel="noreferrer">
             <svg
-              className="w-5 h-5 fill-gray-600 hover:scale-150 hover:fill-blue-500 transition-all duration-300 cursor-pointer"
+              className="w-4 h-4 md:w-6 md:h-6 fill-gray-600 hover:scale-150 hover:fill-blue-500 transition-all duration-300 cursor-pointer"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 496 512"
             >

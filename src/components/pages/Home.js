@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 
 export default function Home(props) {
+  document.title = "Text Analyzer - Home"
+
   const [text, setText] = useState("");
 
   function handleOnChange(event) {
@@ -51,17 +53,14 @@ export default function Home(props) {
   }
 
   const handleCopyToClipboard = () => {
-    /* Get the text field */
-    const content = document.getElementById("content");
-
-    /* Select the text field */
-    content.select();
-    content.setSelectionRange(0, 99999); /* For mobile devices */
-
-    /* Copy the text inside the text field */
-    navigator.clipboard.writeText(content.value);
+    // const content = document.getElementById("content");
+    // content.select();
+    // content.setSelectionRange(0, 99999); /* For mobile devices */
+    // navigator.clipboard.writeText(content.value);
     // document.getSelection().removeAllRanges(); // deselect text
 
+    // Alternative Way
+    navigator.clipboard.writeText(text);
     props.showAlert("Copied to clipboard.", "Success!");
   };
 
@@ -109,19 +108,19 @@ export default function Home(props) {
 
   return (
     <div className="pt-8 pb-10 container">
-      <div className="py-2 flex items-center gap-x-4 text-gray-500">
-        <div className="text-xl font-semibold ">Reading Time :</div>
+      <div className="py-2 flex items-center gap-x-2 sm:gap-x-4 text-gray-500">
+        <div className="md:text-xl font-semibold ">Reading Time :</div>
         {text.length < 1 ? (
           ""
         ) : (
           <>
-            <div>
+            <div className="text-sm sm:text-base">
               {slowReadTime()} <span className="text-xs">(slow)</span>,
             </div>
-            <div>
+            <div className="text-sm sm:text-base">
               {avgReadTime()} <span className="text-xs">(avg)</span>,
             </div>
-            <div>
+            <div className="text-sm sm:text-base">
               {fastReadTime()} <span className="text-xs">(fast)</span>
             </div>
           </>
@@ -135,18 +134,18 @@ export default function Home(props) {
               onChange={handleOnChange}
               id="content"
               rows="11"
-              className="px-0 w-full text-gray-500 bg-white focus:ring-0 border-none"
+              className="px-0 w-full text-sm md:text-base text-gray-500 bg-white focus:ring-0 border-none"
               placeholder="Write your content..."
               autoFocus={true}
             ></textarea>
           </div>
-          <div className="flex justify-between items-center py-2 px-3 border-t">
+          <div className="flex flex-wrap justify-between items-center gap-y-2 md:gap-y-0 py-3 md:py-4 px-3 border-t">
             <div className="inline-flex rounded-md shadow-sm" role="group">
               <button
                 disabled={text.length === 0}
                 onClick={handleTitleCase}
                 type="button"
-                className="py-2 px-4 text-sm font-medium text-blue-500 bg-transparent rounded-l-lg border border-blue-500 hover:bg-blue-500 hover:text-white focus:z-10 focus:bg-blue-500 focus:text-white"
+                className="py-1 px-2 text-xs md:py-2 md:px-4 md:text-sm font-medium text-blue-500 bg-transparent rounded-l-lg border border-blue-500 hover:bg-blue-500 hover:text-white focus:z-10 focus:bg-blue-500 focus:text-white"
               >
                 Title Case
               </button>
@@ -154,7 +153,7 @@ export default function Home(props) {
                 disabled={text.length === 0}
                 onClick={handleUppercase}
                 type="button"
-                className="py-2 px-4 text-sm font-medium text-blue-500 bg-transparent border-t border-b border-blue-500 hover:bg-blue-500 hover:text-white focus:z-10 focus:bg-blue-500 focus:text-white"
+                className="py-1 px-2 text-xs md:py-2 md:px-4 md:text-sm font-medium text-blue-500 bg-transparent border-t border-b border-blue-500 hover:bg-blue-500 hover:text-white focus:z-10 focus:bg-blue-500 focus:text-white"
               >
                 UPPERCASE
               </button>
@@ -162,7 +161,7 @@ export default function Home(props) {
                 disabled={text.length === 0}
                 onClick={handleLowercase}
                 type="button"
-                className="py-2 px-4 text-sm font-medium text-blue-500 bg-transparent border-t border-b border-l border-blue-500 hover:bg-blue-500 hover:text-white focus:z-10 focus:bg-blue-500 focus:text-white"
+                className="py-1 px-2 text-xs md:py-2 md:px-4 md:text-sm font-medium text-blue-500 bg-transparent border-t border-b border-l border-blue-500 hover:bg-blue-500 hover:text-white focus:z-10 focus:bg-blue-500 focus:text-white"
               >
                 lowercase
               </button>
@@ -170,7 +169,7 @@ export default function Home(props) {
                 disabled={text.length === 0}
                 onClick={RemoveExtraSpace}
                 type="button"
-                className="py-2 px-4 text-sm font-medium text-blue-500 bg-transparent border-t border-b border-l border-blue-500 hover:bg-blue-500 hover:text-white focus:z-10 focus:bg-blue-500 focus:text-white"
+                className="hidden md:block py-1 px-2 text-xs md:py-2 md:px-4 md:text-sm font-medium text-blue-500 bg-transparent border-t border-b border-l border-blue-500 hover:bg-blue-500 hover:text-white focus:z-10 focus:bg-blue-500 focus:text-white"
               >
                 RemoveExtraSpace
               </button>
@@ -178,23 +177,23 @@ export default function Home(props) {
                 disabled={text.length === 0}
                 onClick={handleReverse}
                 type="button"
-                className="py-2 px-4 text-sm font-medium text-blue-500 bg-transparent rounded-r-md border border-blue-500 hover:bg-blue-500 hover:text-white focus:z-10 focus:bg-blue-500 focus:text-white"
+                className="py-1 px-2 text-xs md:py-2 md:px-4 md:text-sm font-medium text-blue-500 bg-transparent rounded-r-md border border-blue-500 hover:bg-blue-500 hover:text-white focus:z-10 focus:bg-blue-500 focus:text-white"
               >
                 Reverse
               </button>
             </div>
 
-            <div className="flex items-center gap-x-3 pl-0 sm:pl-2">
+            <div className="flex items-center md:gap-x-3 pl-0 sm:pl-2">
               <button
                 disabled={text.length === 0}
                 onClick={clearFormData}
-                title="Refresh"
+                title="Clear"
                 type="button"
                 className="inline-flex justify-center p-2 text-gray-500 rounded cursor-pointer hover:text-blue-500 hover:bg-gray-200"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6"
+                  className="h-4 w-4 md:h-6 md:w-6"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -216,7 +215,7 @@ export default function Home(props) {
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6"
+                  className="h-4 w-4 md:h-6 md:w-6"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -233,10 +232,11 @@ export default function Home(props) {
           </div>
         </div>
       </form>
-      <p className="ml-auto text-gray-500 space-x-3">
+      <p className="ml-auto text-gray-500 space-x-3 text-sm md:text-base">
         <span className="font-bold">
+          {/* remove whitespace & count accurate word */}
           {
-            text.split(" ").filter((element) => {
+            text.split(/\s+/).filter((element) => {
               return element.length !== 0;
             }).length
           }

@@ -1,40 +1,53 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export default function TheHeader(props) {
+  let activeClassName = "border-b-2 border-blue-500 text-gray-600 font-semibold";
+
   return (
     <header className={`bg-white ${props.className}`}>
-      <nav>
-        <div className="container p-5 mx-auto relative">
-          <Link
-            className="block text-2xl font-bold text-center text-gray-800 lg:text-3xl hover:text-gray-700 "
+      <nav className="container">
+        <div className="p-5 relative">
+          <NavLink
+            className="block text-2xl font-bold text-center text-gray-800 lg:text-3xl hover:text-blue-500 "
             to="/"
           >
             Text Analyzer
-          </Link>
+          </NavLink>
 
-          <div className="flex items-center justify-center mt-6 text-gray-600 capitalize ">
-            <Link
+          <div className="flex items-center justify-center gap-x-8 mt-6 capitalize">
+            <NavLink
               to="/"
-              className="text-gray-800  border-b-2 border-blue-500 mx-1.5 sm:mx-6"
+              className={({ isActive }) =>
+                isActive
+                  ? activeClassName
+                  : "border-b-2 border-transparent text-gray-400 hover:text-gray-600 hover:border-blue-500 font-semibold"
+              }
             >
               home
-            </Link>
+            </NavLink>
 
-            <Link
-              to="/about"
-              className="border-b-2 border-transparent hover:text-gray-800 hover:border-blue-500 mx-1.5 sm:mx-6"
+            <NavLink
+              to="about"
+              className={({ isActive }) =>
+                isActive
+                  ? activeClassName
+                  : "border-b-2 border-transparent text-gray-400 hover:text-gray-600 hover:border-blue-500 font-semibold"
+              }
             >
               about
-            </Link>
+            </NavLink>
 
-            <Link
+            <NavLink
               to="/creator"
-              className="border-b-2 border-transparent hover:text-gray-800 hover:border-blue-500 mx-1.5 sm:mx-6"
+              className={({ isActive }) =>
+                isActive
+                  ? activeClassName
+                  : "border-b-2 border-transparent text-gray-400 hover:text-gray-600 hover:border-blue-500 font-semibold"
+              }
             >
               creator
-            </Link>
-
+            </NavLink>
           </div>
         </div>
       </nav>
