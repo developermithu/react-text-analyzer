@@ -7,9 +7,10 @@ export default function about() {
   return (
     <section className="text-gray-600 container py-10 md:py-14">
       <div className="text-center pb-5">
-        <h1 className="sm:text-4xl text-2xl font-medium text-center title-font text-blue-500 md:mb-4">
+        <h1 className="sm:text-4xl text-2xl font-medium text-center title-font text-blue-500">
           About Project
         </h1>
+        <p className="text-xs md:text-sm text-gray-400 py-2">Everything is are free 👍🏻</p>
       </div>
       <div className="flex flex-wrap lg:w-4/5 text-sm md:text-base sm:mx-auto sm:mb-2 -mx-2">
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 export default function Home(props) {
-  document.title = "Text Analyzer - Home"
+  document.title = "Text Analyzer - Home";
 
   const [text, setText] = useState("");
 
@@ -107,20 +107,20 @@ export default function Home(props) {
   }
 
   return (
-    <div className="pt-8 pb-10 container">
-      <div className="py-2 flex items-center gap-x-2 sm:gap-x-4 text-gray-500">
+    <div className="pt-6 pb-8 lg:py-10 container">
+      <div className="py-2 flex items-center gap-x-6 md:gap-x-4 text-gray-500">
         <div className="md:text-xl font-semibold ">Reading Time :</div>
         {text.length < 1 ? (
           ""
         ) : (
           <>
-            <div className="text-sm sm:text-base">
+            <div className="text-sm sm:text-base hidden md:block">
               {slowReadTime()} <span className="text-xs">(slow)</span>,
             </div>
             <div className="text-sm sm:text-base">
               {avgReadTime()} <span className="text-xs">(avg)</span>,
             </div>
-            <div className="text-sm sm:text-base">
+            <div className="text-sm sm:text-base hidden md:block">
               {fastReadTime()} <span className="text-xs">(fast)</span>
             </div>
           </>
@@ -133,13 +133,13 @@ export default function Home(props) {
               value={text}
               onChange={handleOnChange}
               id="content"
-              rows="11"
-              className="px-0 w-full text-sm md:text-base text-gray-500 bg-white focus:ring-0 border-none"
+              rows=""
+              className="px-0 w-full h-44 md:h-64 text-sm md:text-base text-gray-500 bg-white focus:ring-0 border-none"
               placeholder="Write your content..."
               autoFocus={true}
             ></textarea>
           </div>
-          <div className="flex flex-wrap justify-between items-center gap-y-2 md:gap-y-0 py-3 md:py-4 px-3 border-t">
+          <div className="flex flex-wrap justify-between items-center gap-y-3 lg:gap-y-0 p-3 md:py-4 border-t">
             <div className="inline-flex rounded-md shadow-sm" role="group">
               <button
                 disabled={text.length === 0}
@@ -183,17 +183,17 @@ export default function Home(props) {
               </button>
             </div>
 
-            <div className="flex items-center md:gap-x-3 pl-0 sm:pl-2">
+            <div className="flex items-center gap-x-2 md:gap-x-4">
               <button
                 disabled={text.length === 0}
                 onClick={clearFormData}
                 title="Clear"
                 type="button"
-                className="inline-flex justify-center p-2 text-gray-500 rounded cursor-pointer hover:text-blue-500 hover:bg-gray-200"
+                className="inline-flex items-center gap-x-2 text-xs md:text-sm py-1 px-2 md:py-2 md:px-4 text-pink-500 border border-pink-500 rounded hover:bg-pink-500 hover:text-white active:bg-pink-600 focus:outline-none focus:ring cursor-pointer"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4 md:h-6 md:w-6"
+                  className="h-4 w-4 md:h-5 md:w-5"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -211,11 +211,12 @@ export default function Home(props) {
                 onClick={handleCopyToClipboard}
                 title="Copy to Clipboard"
                 type="button"
-                className="inline-flex justify-center p-2 text-gray-500 rounded cursor-pointer hover:text-blue-500 hover:bg-gray-200"
+                className="inline-flex items-center gap-x-2 text-xs md:text-sm py-1 px-2 md:py-2 md:px-4 text-blue-500 border border-blue-500 rounded hover:bg-blue-500 hover:text-white active:bg-blue-600 focus:outline-none focus:ring cursor-pointer"
               >
+                <span className="font-medium">Copy</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4 md:h-6 md:w-6"
+                  className="h-4 w-4 md:h-5 md:w-5"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"

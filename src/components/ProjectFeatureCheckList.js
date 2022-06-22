@@ -3,7 +3,7 @@ import React from "react";
 export default function ProjectFeatureCheckList(props) {
   return (
     <div className="p-2 sm:w-1/2 w-full">
-      <div className="bg-gray-100 rounded flex p-4 h-full items-center">
+      <div className="bg-gray-100 rounded flex p-3 md:p-4 h-full items-center">
         <svg
           fill="none"
           stroke="currentColor"
