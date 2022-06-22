@@ -7,6 +7,13 @@ npm install
 npm run start
 ```
 
+### To Deploy Production
+
+```
+npm run build
+serve -s build
+```
+
 ### Functionality
 
 1. Convert text to Title Case

@@ -1,6 +1,7 @@
 {
   "short_name": "Text Analyzer",
   "name": "Text Analyzer",
+  "description": "Text analyzer is a progressive web app where you can count words, charecters and convert text lowercase to uppercase, uppercase to lowercase as well as check word reading time",
   "icons": [
     {
       "src": "maskable.png",

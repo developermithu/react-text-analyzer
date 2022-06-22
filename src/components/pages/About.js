@@ -10,7 +10,7 @@ export default function about() {
         <h1 className="sm:text-4xl text-2xl font-medium text-center title-font text-blue-500">
           About Project
         </h1>
-        <p className="text-xs md:text-sm text-gray-400 py-2">Everything is are free 👍🏻</p>
+        <p className="text-xs md:text-sm text-gray-400 py-2">Everything is free 👍🏻</p>
       </div>
       <div className="flex flex-wrap lg:w-4/5 text-sm md:text-base sm:mx-auto sm:mb-2 -mx-2">
 
