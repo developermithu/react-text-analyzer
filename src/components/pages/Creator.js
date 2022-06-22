@@ -16,9 +16,9 @@ export default function Creator() {
         <p className="pt-8 text-sm text-gray-500">I'm a full-stack developer specialised in frontend and backend development for complex scalable web apps. Want to know how I may help your project? </p>
   
         <div className="pt-12 pb-8">
-          <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full">
+          <a href="https://instagram.com/developermithu" className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full">
             Get In Touch
-          </button> 
+          </a> 
         </div>
   
         <div className="mt-6 pb-10 lg:pb-0 w-4/5 lg:w-full mx-auto flex flex-wrap items-center justify-between">
