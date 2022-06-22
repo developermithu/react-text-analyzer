@@ -1,10 +1,10 @@
 {
   "short_name": "Text Analyzer",
-  "name": "Text Analyzer by developermithu",
+  "name": "Text Analyzer",
   "icons": [
     {
-      "src": "maskable_icon_x192.png",
-      "sizes": "192x192",
+      "src": "maskable.png",
+      "sizes": "163x163",
       "type": "image/x-icon",
       "purpose": "any maskable"
     },
@@ -14,7 +14,7 @@
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "android-chrome-192x192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
@@ -24,7 +24,12 @@
       "sizes": "256x256"
     },
     {
-      "src": "logo512.png",
+      "src": "logo384.png",
+      "type": "image/png",
+      "sizes": "384x384"
+    },
+    {
+      "src": "android-chrome-512x512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
@@ -32,6 +37,6 @@
   "scope": "/",
   "start_url": "/",
   "display": "standalone",
-  "theme_color": "#000000",
+  "theme_color": "#209CEE",
   "background_color": "#ffffff"
 }

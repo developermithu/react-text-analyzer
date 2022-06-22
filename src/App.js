@@ -35,7 +35,7 @@ function App() {
         <TheHeader className="relative" />
 
         {/* Alert */}
-        <Alert alert={alert} className="absolute top-10 right-10" />
+        <Alert alert={alert} className="absolute top-28 right-3 md:top-10 md:right-10" />
 
         <Routes>
           <Route path="/" element={<Home showAlert={showAlert} />} />
